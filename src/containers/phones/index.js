@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as R from "ramda";
 import { Link } from "react-router";
-import { fetchPhones } from "../../actions";
+import { fetchPhones, loadMorePhones } from "../../actions";
 import { getPhones } from "../../selectors";
 
 class Phones extends Component {
@@ -10,11 +10,11 @@ class Phones extends Component {
     this.props.fetchPhones();
   }
 
-  renderPhone(phone) {
+  renderPhone(phone, index) {
     const shortDescription = `${R.take(60, phone.description)}...`;
 
     return (
-      <div className="col-sm-4 col-lg-4 col-md-4 book-list" key={phone.id}>
+      <div className="col-sm-4 col-lg-4 col-md-4 book-list" key={index}>
         <div className="thumbnail">
           <img className="img-thumbnail" src={phone.image} alt={phone.name} />
           <div className="caption">
@@ -36,11 +36,21 @@ class Phones extends Component {
   }
 
   render() {
-    const { phones } = this.props;
+    const { phones, loadMorePhones } = this.props;
     console.log(phones);
     return (
       <div>
         <div className="books row">{phones.map(this.renderPhone)}</div>
+        <div className="row">
+          <div className="col-md-12">
+            <button
+              onClick={loadMorePhones}
+              className="pull-right btn btn-primary"
+            >
+              Load More
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
@@ -51,7 +61,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  fetchPhones
+  fetchPhones,
+  loadMorePhones
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Phones);

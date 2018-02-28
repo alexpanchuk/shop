@@ -11,7 +11,7 @@ const BasketCart = ({ totalBasketCount, totalPrice }) => (
         id="dLabel"
         className="btn btn-inverse btn-block btn-lg"
       >
-        <i className="fa fa-shopping-cart" />
+        <i className="glyphicon glyphicon-shopping-cart" />{" "}
         <span>
           {totalBasketCount} item(s) - ${totalPrice}
         </span>

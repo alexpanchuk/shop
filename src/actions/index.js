@@ -8,8 +8,10 @@ import {
   FETCH_PHONE_BY_ID_START,
   FETCH_PHONE_BY_ID_SUCCESS,
   FETCH_PHONE_BY_ID_FAILURE,
-  ADD_PHONE_TO_BASKET
+  ADD_PHONE_TO_BASKET,
+  SEARCH_PHONE
 } from "../actionTypes";
+
 import {
   fetchPhones as fetchPhonesApi,
   loadMorePhones as loadMorePhonesApi,
@@ -75,4 +77,9 @@ export const fetchPhoneById = id => async (dispatch, getState) => {
 export const addPhoneToBasket = id => ({
   type: ADD_PHONE_TO_BASKET,
   payload: id
+});
+
+export const searchPhone = text => ({
+  type: SEARCH_PHONE,
+  payload: text
 });

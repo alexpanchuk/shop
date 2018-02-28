@@ -1,6 +1,6 @@
+import * as R from "ramda";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as R from "ramda";
 import { Link } from "react-router";
 import { fetchPhones, loadMorePhones, addPhoneToBasket } from "../../actions";
 import { getPhones } from "../../selectors";

@@ -29,3 +29,4 @@ yarn start - run dev server on localhost:3000
 * migrate to react-router 4
 * migrate to redux-saga
 * improve project folder architecture
+* improve UI

@@ -70,8 +70,8 @@ export const getTotalBasketPrice = state =>
   state.basket.reduce((sum, id) => sum + state.phones[id].price, 0);
 
 /**
- * return a list of catefories names from list of {id, name}
- * [{id, name}] => [name]
+ * return a list of categories [{id, name}] from categories, hashed by id
+ * {{id, name}} => [{id, name}]
  */
 
 export const getCategories = state => R.values(state.categories);

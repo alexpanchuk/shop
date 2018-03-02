@@ -1,9 +1,21 @@
 import React from "react";
 import * as R from "ramda";
 import { connect } from "react-redux";
+import { Link } from "react-router";
 import { getBasketPhonesWithCount, getTotalBasketPrice } from "../../selectors";
+import {
+  removePhoneFromBasket,
+  cleanBasket,
+  basketCheckout
+} from "../../actions";
 
-const Basket = ({ phones, totalPrice }) => {
+const Basket = ({
+  phones,
+  totalPrice,
+  removePhoneFromBasket,
+  cleanBasket,
+  basketCheckout
+}) => {
   const isBasketEmpty = R.isEmpty(phones);
 
   const renderContent = () => {
@@ -27,7 +39,10 @@ const Basket = ({ phones, totalPrice }) => {
                   <td>${phone.price}</td>
                   <td>{phone.count}</td>
                   <td>
-                    <span className="delete-cart" />
+                    <span
+                      onClick={() => removePhoneFromBasket(phone.id)}
+                      className="delete-cart"
+                    />
                   </td>
                 </tr>
               ))}
@@ -46,7 +61,27 @@ const Basket = ({ phones, totalPrice }) => {
     );
   };
 
-  const renderSidebar = () => <div>Sidebar</div>;
+  const renderSidebar = () => (
+    <div>
+      <Link className="btn btn-info" to="/">
+        <span className="glyphicon glyphicon-info-sign" />
+        <span> Continue shopping!</span>
+      </Link>
+      {R.not(isBasketEmpty) && (
+        <div>
+          <button onClick={cleanBasket} className="btn btn-danger">
+            <span className="glyphicon glyphicon-trash" /> Clear Cart
+          </button>
+          <button
+            className="btn btn-success"
+            onClick={() => basketCheckout(phones)}
+          >
+            <span className="glyphicon glyphicon-envelope" /> Checkout
+          </button>
+        </div>
+      )}
+    </div>
+  );
 
   return (
     <div className="view-container">
@@ -65,4 +100,10 @@ const mapStateToProps = state => ({
   totalPrice: getTotalBasketPrice(state)
 });
 
-export default connect(mapStateToProps, null)(Basket);
+const mapDispatchToProps = {
+  removePhoneFromBasket,
+  cleanBasket,
+  basketCheckout
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Basket);

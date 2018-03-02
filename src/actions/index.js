@@ -12,7 +12,9 @@ import {
   SEARCH_PHONE,
   FETCH_CATEGORIES_START,
   FETCH_CATEGORIES_SUCCESS,
-  FETCH_CATEGORIES_FAILURE
+  FETCH_CATEGORIES_FAILURE,
+  REMOVE_PHONE_FROM_BASKET,
+  CLEAN_BASKET
 } from "../actionTypes";
 
 import {
@@ -21,6 +23,7 @@ import {
   fetchPhoneById as fetchPhoneByIdApi,
   fetchCategories as fetchCategoriesApi
 } from "../api";
+
 import { getRenderedPhonesLength } from "../selectors";
 
 export const fetchPhones = () => async dispatch => {
@@ -104,4 +107,17 @@ export const fetchCategories = () => async dispatch => {
       error: true
     });
   }
+};
+
+export const removePhoneFromBasket = id => ({
+  type: REMOVE_PHONE_FROM_BASKET,
+  payload: id
+});
+
+export const cleanBasket = () => ({
+  type: CLEAN_BASKET
+});
+
+export const basketCheckout = phones => () => {
+  alert(JSON.stringify(phones));
 };

@@ -6,7 +6,7 @@ export default [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultricies lorem odio, at laoreet tellus sodales in. Nullam maximus eros ut tortor ultricies rutrum. Aliquam euismod lacus non est egesta",
     price: 823,
-    image: "/uploads/1.jpg",
+    image: "uploads/1.jpg",
     cpu: "1.3GHz Apple A6",
     camera: "8mp (3264x2448)",
     size: "124.4mm x 59.2mm x 8.97mm (4.9 x 2.33 x 0.35)",
@@ -22,7 +22,7 @@ export default [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultricies lorem odio, at laoreet tellus sodales in. Nullam maximus eros ut tortor ultricies rutrum. Aliquam euismod lacus non est egesta",
     price: 953,
-    image: "/uploads/2.jpg",
+    image: "uploads/2.jpg",
     cpu: "1.3GHz Apple A6",
     camera: "8mp (3264x2448)",
     size: "124.4mm x 59.2mm x 8.97mm (4.9 x 2.33 x 0.35)",
@@ -38,7 +38,7 @@ export default [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultricies lorem odio, at laoreet tellus sodales in. Nullam maximus eros ut tortor ultricies rutrum. Aliquam euismod lacus non est egesta",
     price: 764,
-    image: "/uploads/3.jpg",
+    image: "uploads/3.jpg",
     cpu: "1.3GHz Apple A6",
     camera: "8mp (3264x2448)",
     size: "124.4mm x 59.2mm x 8.97mm (4.9 x 2.33 x 0.35)",
@@ -54,7 +54,7 @@ export default [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultricies lorem odio, at laoreet tellus sodales in. Nullam maximus eros ut tortor ultricies rutrum. Aliquam euismod lacus non est egesta",
     price: 674,
-    image: "/uploads/4.jpg",
+    image: "uploads/4.jpg",
     cpu: "1.3GHz Apple A6",
     camera: "8mp (3264x2448)",
     size: "124.4mm x 59.2mm x 8.97mm (4.9 x 2.33 x 0.35)",
@@ -70,7 +70,7 @@ export default [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultricies lorem odio, at laoreet tellus sodales in. Nullam maximus eros ut tortor ultricies rutrum. Aliquam euismod lacus non est egesta",
     price: 674,
-    image: "/uploads/5.png",
+    image: "uploads/5.png",
     cpu: "1.3GHz Apple A6",
     camera: "8mp (3264x2448)",
     size: "124.4mm x 59.2mm x 8.97mm (4.9 x 2.33 x 0.35)",
@@ -86,7 +86,7 @@ export default [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultricies lorem odio, at laoreet tellus sodales in. Nullam maximus eros ut tortor ultricies rutrum. Aliquam euismod lacus non est egesta",
     price: 674,
-    image: "/uploads/6.png",
+    image: "uploads/6.png",
     cpu: "1.3GHz Apple A6",
     camera: "8mp (3264x2448)",
     size: "124.4mm x 59.2mm x 8.97mm (4.9 x 2.33 x 0.35)",

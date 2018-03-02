@@ -6,7 +6,7 @@ import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import { syncHistoryWithStore } from "react-router-redux";
-import { Router, Route, browserHistory } from "react-router";
+import { Router, Route, hashHistory } from "react-router";
 import { Provider } from "react-redux";
 
 import reducers from "./reducers";
@@ -20,7 +20,7 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(thunk))
 );
 
-const history = syncHistoryWithStore(browserHistory, store);
+const history = syncHistoryWithStore(hashHistory, store);
 
 ReactDOM.render(
   <Provider store={store}>

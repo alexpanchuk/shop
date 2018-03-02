@@ -82,3 +82,26 @@ export const getCategories = state => R.values(state.categories);
 
 export const getActiveCategoryId = ownProps =>
   R.path(["params", "id"], ownProps);
+
+/**
+ * Return a list of phones in basket with mixed count of repeating each item
+ * {[ids]} => [{...phone, count}]
+ */
+
+export const getBasketPhonesWithCount = state => {
+  const uniqueIds = R.uniq(state.basket);
+
+  const phoneCount = id =>
+    R.pipe(R.filter(basketId => R.equals(id, basketId)), R.length)(
+      state.basket
+    );
+
+  const phoneWithCount = phone => R.assoc("count", phoneCount(phone.id), phone);
+
+  const phones = R.pipe(
+    R.map(id => getPhoneById(state, id)),
+    R.map(phoneWithCount)
+  )(uniqueIds);
+
+  return phones;
+};

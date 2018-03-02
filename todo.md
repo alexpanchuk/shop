@@ -1,2 +1,2 @@
 * move dispatch out of try-catch
-* Phones renders a lot first time
+* optimize Phones and Categories first rendering

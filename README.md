@@ -1,7 +1,5 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-## WIP...
-
 ### Internet Shop
 
 built for training with ReactJS & Redux

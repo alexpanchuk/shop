@@ -28,13 +28,10 @@ import { getRenderedPhonesLength } from "../selectors";
 
 export const fetchPhones = () => async dispatch => {
   dispatch({ type: FETCH_PHONES_START });
+  let phones = []; // does i really need empty value ( = [] ) ??? here and below
 
   try {
-    const phones = await fetchPhonesApi();
-    dispatch({
-      type: FETCH_PHONES_SUCCESS,
-      payload: phones
-    });
+    phones = await fetchPhonesApi();
   } catch (error) {
     dispatch({
       type: FETCH_PHONES_FAILURE,
@@ -42,18 +39,20 @@ export const fetchPhones = () => async dispatch => {
       error: true
     });
   }
+
+  dispatch({
+    type: FETCH_PHONES_SUCCESS,
+    payload: phones
+  });
 };
 
 export const loadMorePhones = () => async (dispatch, getState) => {
   const offset = getRenderedPhonesLength(getState());
   dispatch({ type: LOAD_MORE_PHONES_START });
+  let phones = [];
 
   try {
-    const phones = await loadMorePhonesApi({ offset });
-    dispatch({
-      type: LOAD_MORE_PHONES_SUCCESS,
-      payload: phones
-    });
+    phones = await loadMorePhonesApi({ offset });
   } catch (error) {
     dispatch({
       type: LOAD_MORE_PHONES_FAILURE,
@@ -61,17 +60,18 @@ export const loadMorePhones = () => async (dispatch, getState) => {
       error: true
     });
   }
+
+  dispatch({
+    type: LOAD_MORE_PHONES_SUCCESS,
+    payload: phones
+  });
 };
 
 export const fetchPhoneById = id => async (dispatch, getState) => {
   dispatch({ type: FETCH_PHONE_BY_ID_START });
-
+  let phone = {};
   try {
-    const phone = await fetchPhoneByIdApi(id);
-    dispatch({
-      type: FETCH_PHONE_BY_ID_SUCCESS,
-      payload: phone
-    });
+    phone = await fetchPhoneByIdApi(id);
   } catch (err) {
     dispatch({
       type: FETCH_PHONE_BY_ID_FAILURE,
@@ -79,6 +79,11 @@ export const fetchPhoneById = id => async (dispatch, getState) => {
       error: true
     });
   }
+
+  dispatch({
+    type: FETCH_PHONE_BY_ID_SUCCESS,
+    payload: phone
+  });
 };
 
 export const addPhoneToBasket = id => ({
@@ -93,13 +98,10 @@ export const searchPhone = text => ({
 
 export const fetchCategories = () => async dispatch => {
   dispatch({ type: FETCH_CATEGORIES_START });
+  let categories = [];
 
   try {
-    const categories = await fetchCategoriesApi();
-    dispatch({
-      type: FETCH_CATEGORIES_SUCCESS,
-      payload: categories
-    });
+    categories = await fetchCategoriesApi();
   } catch (error) {
     dispatch({
       type: FETCH_CATEGORIES_FAILURE,
@@ -107,6 +109,11 @@ export const fetchCategories = () => async dispatch => {
       error: true
     });
   }
+
+  dispatch({
+    type: FETCH_CATEGORIES_SUCCESS,
+    payload: categories
+  });
 };
 
 export const removePhoneFromBasket = id => ({

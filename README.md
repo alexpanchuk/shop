@@ -23,7 +23,7 @@ yarn start - run dev server on localhost:3000
 ### TODO
 
 * ~~applying search during user input~~
-* move dispatch out of try-catch
+* ~~move dispatch out of try-catch~~
 * optimize Phones and Categories first rendering
 * apply components with "Presentational and Container components pattern"
 * migrate to react-router 4

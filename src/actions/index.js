@@ -92,10 +92,10 @@ export const fetchCategories = () => async dispatch => {
   dispatch({ type: FETCH_CATEGORIES_START });
 
   try {
-    const catefories = await fetchCategoriesApi();
+    const categories = await fetchCategoriesApi();
     dispatch({
       type: FETCH_CATEGORIES_SUCCESS,
-      payload: catefories
+      payload: categories
     });
   } catch (error) {
     dispatch({

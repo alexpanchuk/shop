@@ -1,8 +1,17 @@
 import * as R from "ramda";
 
+/**
+ * return an id field of given object
+ */
+
 export const getPhoneById = ({ phones }, id) => R.prop(id, phones);
 
-export const getPhones = state => {
+/**
+ * return phones from state, applying Category filter and search string
+ */
+
+export const getPhones = (state, ownProps) => {
+  const activeCategoryId = R.path(["params", "id"], ownProps);
   const applySearch = phone =>
     R.pipe(
       R.prop("name"),
@@ -10,9 +19,13 @@ export const getPhones = state => {
       R.contains(R.toLower(state.phonesPage.search))
     )(phone);
 
-  const phones = R.compose(
-    R.filter(applySearch),
-    R.map(id => getPhoneById(state, id))
+  const applyCategory = item =>
+    R.equals(activeCategoryId, R.prop("categoryId", item));
+
+  const phones = R.pipe(
+    R.map(id => getPhoneById(state, id)),
+    R.when(R.always(activeCategoryId), R.filter(applyCategory)),
+    R.filter(applySearch)
   )(state.phonesPage.ids);
 
   return phones;
@@ -27,7 +40,15 @@ export const getPhones = state => {
 //   return searchedPhones;
 // };
 
+/**
+ * return a length of phones on a Phones page
+ */
+
 export const getRenderedPhonesLength = state => R.length(state.phonesPage.ids);
+
+/**
+ * return a total amount of items in basket
+ */
 
 export const getTotalBasketCount = state => R.length(state.basket);
 
@@ -41,5 +62,23 @@ export const getTotalBasketCount = state => R.length(state.basket);
 //   return totalPrice;
 // };
 
+/**
+ * return a total price of all items in basket
+ */
+
 export const getTotalBasketPrice = state =>
   state.basket.reduce((sum, id) => sum + state.phones[id].price, 0);
+
+/**
+ * return a list of catefories names from list of {id, name}
+ * [{id, name}] => [name]
+ */
+
+export const getCategories = state => R.values(state.categories);
+
+/**
+ * return an id from router params
+ */
+
+export const getActiveCategoryId = ownProps =>
+  R.path(["params", "id"], ownProps);

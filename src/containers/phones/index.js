@@ -14,6 +14,7 @@ class Phones extends Component {
   componentDidMount() {
     this.props.fetchPhones();
     this.props.fetchCategories();
+    console.log("MOUNT");
   }
 
   renderPhone(phone, index) {
@@ -48,7 +49,9 @@ class Phones extends Component {
   }
 
   render() {
+    console.log("RENDER");
     const { phones, loadMorePhones } = this.props;
+    console.log(phones);
     return (
       <div>
         <div className="books row">
@@ -69,8 +72,8 @@ class Phones extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  phones: getPhones(state)
+const mapStateToProps = (state, ownProps) => ({
+  phones: getPhones(state, ownProps)
 });
 
 const mapDispatchToProps = {

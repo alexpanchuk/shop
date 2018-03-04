@@ -1,20 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { searchPhone } from "../../actions";
+import { SEARCH_PHONE } from "../../actionTypes";
 
 class Search extends Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-  }
-
   componentDidMount() {
     this.input.focus();
   }
 
-  handleChange(event) {
-    this.props.searchPhone(event.target.value);
-  }
+  handleChange = event => {
+    this.props.dispatch({ type: SEARCH_PHONE, payload: event.target.value });
+  };
 
   render() {
     return (
@@ -31,8 +26,4 @@ class Search extends Component {
   }
 }
 
-const mapDispatchToProps = {
-  searchPhone
-};
-
-export default connect(null, mapDispatchToProps)(Search);
+export default connect()(Search);

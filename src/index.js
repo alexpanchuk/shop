@@ -4,7 +4,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import thunk from "redux-thunk";
+// import thunk from "redux-thunk";
+import createSagaMiddleware from "redux-saga";
 import { syncHistoryWithStore } from "react-router-redux";
 import { Router, Route, hashHistory } from "react-router";
 import { Provider } from "react-redux";
@@ -15,10 +16,15 @@ import Phones from "./containers/phones";
 import Phone from "./containers/phone";
 import Basket from "./containers/basket";
 
+import rootSaga from "./sagas/sagas";
+
+const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
   reducers,
-  composeWithDevTools(applyMiddleware(thunk))
+  composeWithDevTools(applyMiddleware(sagaMiddleware))
 );
+
+sagaMiddleware.run(rootSaga);
 
 const history = syncHistoryWithStore(hashHistory, store);
 

@@ -3,21 +3,21 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router";
 import {
-  fetchPhones,
-  loadMorePhones,
-  addPhoneToBasket,
-  fetchCategories
-} from "../../actions";
+  FETCH_PHONES_START,
+  FETCH_CATEGORIES_START,
+  LOAD_MORE_PHONES_START,
+  ADD_PHONE_TO_BASKET
+} from "../../actionTypes";
 import { getPhones } from "../../selectors";
 
 class Phones extends Component {
   componentDidMount() {
-    this.props.fetchPhones();
-    this.props.fetchCategories();
+    this.props.dispatch({ type: FETCH_PHONES_START });
+    this.props.dispatch({ type: FETCH_CATEGORIES_START });
   }
 
   renderPhone(phone, index) {
-    const { addPhoneToBasket } = this.props;
+    const { dispatch } = this.props;
     const shortDescription = `${R.take(60, phone.description)}...`;
 
     return (
@@ -33,7 +33,9 @@ class Phones extends Component {
             <p className="itemButton">
               <button
                 className="btn btn-primary"
-                onClick={() => addPhoneToBasket(phone.id)}
+                onClick={() =>
+                  dispatch({ type: ADD_PHONE_TO_BASKET, payload: phone.id })
+                }
               >
                 Buy Now!
               </button>
@@ -48,7 +50,7 @@ class Phones extends Component {
   }
 
   render() {
-    const { phones, loadMorePhones } = this.props;
+    const { phones, dispatch } = this.props;
 
     return (
       <div>
@@ -58,7 +60,7 @@ class Phones extends Component {
         <div className="row">
           <div className="col-md-12">
             <button
-              onClick={loadMorePhones}
+              onClick={() => dispatch({ type: LOAD_MORE_PHONES_START })}
               className="pull-right btn btn-primary"
             >
               Load More
@@ -74,11 +76,4 @@ const mapStateToProps = (state, ownProps) => ({
   phones: getPhones(state, ownProps)
 });
 
-const mapDispatchToProps = {
-  fetchPhones,
-  loadMorePhones,
-  addPhoneToBasket,
-  fetchCategories
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Phones);
+export default connect(mapStateToProps)(Phones);

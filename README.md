@@ -22,9 +22,9 @@ yarn start - run dev server on localhost:3000
 
 * ~~applying search during user input~~
 * ~~move dispatch out of try-catch~~
+* ~~migrate to redux-saga~~
 * optimize Phones and Categories first rendering
 * apply components with "Presentational and Container components pattern"
 * migrate to react-router 4
-* migrate to redux-saga
 * improve project folder architecture
 * improve UI
